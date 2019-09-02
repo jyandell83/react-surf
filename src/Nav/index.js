@@ -1,14 +1,41 @@
 import React from 'react';
 
 
+//------------------------styled components ---------------------------------
+import { NavContainer,
+    NavRow,
+    Link,
+    NavUl
+    } from './style';
+
+
 const Nav = () =>  {
     return(
-        <nav>
-            HI me nav
-        </nav>
+        <NavContainer>
+        <NavRow>
+            <NavUl>
+                <li>
+                    <Link to = '/home'>Home</Link>
+                </li>
+                <li>
+                    <Link to = '/profile'>Profile</Link>
+                </li>
+                <li>
+                    <Link to = '/surfspot'>Surf Spot</Link>
+                </li>
+                <li>
+                    <Link to = '/signup'>Sign Up</Link>
+                </li>
+                <li>
+                    <Link to = '/signin'>Sign In</Link>
+                </li>
+            </NavUl>
+        </NavRow>
+    </NavContainer>
     )
 
 
 }
 
 export default Nav;
+

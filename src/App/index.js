@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 
@@ -9,11 +9,19 @@ import Profile from '../Profile';
 import Surfspot from '../Surfspot';
 import Signup from '../Signup';
 import Signin from '../Signin';
+import firedb from '../Firebase/firebase'
 
 
 
 
 const App = ()  =>  {
+    useEffect(() =>  {
+        firedb.ref().set({
+            "name": "JoJo"
+          })
+          .then(() => console.log('Data Written Successfully'))
+          .catch((error) => console.log('Firebase Error ', error))
+    }, []);
     return (
       <div className="App">
         <Nav />
