@@ -9,7 +9,7 @@ import { NavContainer,
     } from './style';
 
 
-const Nav = () =>  {
+const Nav = ({signOut}) =>  {
     return(
         <NavContainer>
         <NavRow>
@@ -28,6 +28,9 @@ const Nav = () =>  {
                 </li>
                 <li>
                     <Link to = '/signin'>Sign In</Link>
+                </li>
+                <li>
+                    <button onClick={() => signOut()} >Sign Out</button>
                 </li>
             </NavUl>
         </NavRow>

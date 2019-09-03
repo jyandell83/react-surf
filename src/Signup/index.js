@@ -3,13 +3,12 @@ import React, { useState, useEffect } from 'react';
 
 
 
-const Signup = ()  =>  {
-    const [user, setUser] = useState('');
-    console.log(user, "this is the user")
+const Signup = ({addUser})  =>  {
+
     return (
       <div>
         <span>Signup</span>
-        <SignUpForm addUser={setUser}/>
+        <SignUpForm addUser={addUser}/>
       </div>
     );
   }
@@ -27,7 +26,7 @@ const SignUpForm = ({addUser}) =>  {
     return(
         <form onSubmit={e =>  {
             e.preventDefault();
-            addUser({name: userName, email: email, passwordOne: passwordOne, passwordTwo: passwordTwo});
+            addUser({name: userName, email: email, password: passwordOne});
         }}>
             <input name="username" placeholder="Username..." value={userName} onChange={e => setUserName(e.target.value)}></input> <br />
             <input name="email" placeholder="Email..." value={email} onChange={e => setEmail(e.target.value)}></input> <br />
