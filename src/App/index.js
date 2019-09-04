@@ -13,6 +13,7 @@ import Surfspot from '../Surfspot';
 import Signup from '../Signup';
 import Signin from '../Signin';
 import firedb from '../Firebase/firebase'
+import {SpotProfile} from '../Surfspot'
 
 
 
@@ -77,6 +78,7 @@ const App = ()  =>  {
             <Route exact path = '/home' render = { () => <Home/> } />
             <Route exact path = '/profile' render = { () => <Profile /> } />
             <Route exact path = '/surfspot' render = { () => <Surfspot isUserAdmin={isUserAdmin}/> } />
+            <Route exact path = '/surfspot/:id' render = { (props) => <SpotProfile {...props} /> } />
             <Route exact path = '/signup' render = { () => <Signup addUser={addUser}/> } />
             <Route exact path = '/signin' render = { () => <Signin signIn={signIn}/> } />
         </Switch>
