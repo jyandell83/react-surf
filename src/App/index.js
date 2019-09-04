@@ -21,6 +21,7 @@ const App = ()  =>  {
     const [user, setUser] = useState('');
     const [uid, setUid] = useState('');
     const [nameOfCurrentUser, setNameOfCurrentUser] = useState('');
+    const [isUserAdmin, setIsUserAdmin] = useState(false);
 
     const addUser = (user) =>  {
         setUser({user});
@@ -38,6 +39,7 @@ const App = ()  =>  {
     const signOut = () => {
         app.auth().signOut()
         .then(setNameOfCurrentUser(''))
+        .then(setIsUserAdmin(false))
     };
     const signIn = (user) =>  {
         app.auth().signInWithEmailAndPassword(user.email, user.password)
@@ -57,6 +59,7 @@ const App = ()  =>  {
                 .then((snapshot) => {
                     console.log(snapshot.val());
                     setNameOfCurrentUser(snapshot.val().username);
+                    setIsUserAdmin(snapshot.val().admin);
                 })
                 .catch(error => console.log('Firebase Error: ', error))
             } else {
@@ -73,7 +76,7 @@ const App = ()  =>  {
         <Switch>
             <Route exact path = '/home' render = { () => <Home/> } />
             <Route exact path = '/profile' render = { () => <Profile /> } />
-            <Route exact path = '/surfspot' render = { () => <Surfspot /> } />
+            <Route exact path = '/surfspot' render = { () => <Surfspot isUserAdmin={isUserAdmin}/> } />
             <Route exact path = '/signup' render = { () => <Signup addUser={addUser}/> } />
             <Route exact path = '/signin' render = { () => <Signin signIn={signIn}/> } />
         </Switch>
