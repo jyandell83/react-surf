@@ -4,20 +4,33 @@ import firedb from '../Firebase/firebase'
 
 
 const Surfspot = ({isUserAdmin})  =>  {
+    const [allSpots, setAllSpots] = useState([]);
+    const getAllSpots = () =>  {
+        
+        firedb.ref('spots')
+            .on('value', (snapshot) => {
+                const spotArray = [];
+                snapshot.forEach(childSnapshot => {
+                spotArray.push(childSnapshot.val())
+                setAllSpots(spotArray)
+            })
+        })
+    }
     useEffect(() =>  {
-        console.log('hi from surfspot')
-    }, []);
+        getAllSpots();
+    },[]);
     const addSpot = (spot) =>  {
-        console.log(spot,'in addSpot');
         firedb.ref(`spots/`).push(spot)
         .catch(function(error) {
             console.log(error)
-        });
+        })
     }
+    console.log(allSpots, 'this should be all spots');
     return (
       <div>
-        <span>Surfspot</span>
+        <span>Surfspots</span>
         {isUserAdmin ? <AddSpotForm addSpot={addSpot}/>: null}
+        <SpotList allSpots={allSpots}/>
       </div>
     );
 }
@@ -47,6 +60,25 @@ const AddSpotForm = ({addSpot}) =>  {
         </form>
     )
 
+}
+
+const SpotList = ({allSpots}) =>  {
+    console.log(allSpots, 'this is the props in spotlist')
+    return(
+        <div>
+        <h1>hi im a list of surfspots</h1>
+        {
+            allSpots.map(spot =>  {
+                return(
+                <li>
+                    {spot.spotname}
+                </li>
+                )
+            })
+        }
+        </div>
+        
+    )
 }
 
 
