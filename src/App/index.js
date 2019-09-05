@@ -13,6 +13,7 @@ import Surfspot from '../Surfspot';
 import Signup from '../Signup';
 import Signin from '../Signin';
 import firedb from '../Firebase/firebase'
+import SpotProfile from '../SpotProfile';
 
 
 
@@ -40,7 +41,7 @@ const App = ()  =>  {
         app.auth().signOut()
         .then(setNameOfCurrentUser(''))
         .then(setIsUserAdmin(false))
-    };
+    }
     const signIn = (user) =>  {
         app.auth().signInWithEmailAndPassword(user.email, user.password)
             .then(authUser =>  {
@@ -60,6 +61,7 @@ const App = ()  =>  {
                     console.log(snapshot.val());
                     setNameOfCurrentUser(snapshot.val().username);
                     setIsUserAdmin(snapshot.val().admin);
+                    setUid(currentUser.uid)
                 })
                 .catch(error => console.log('Firebase Error: ', error))
             } else {
@@ -77,6 +79,7 @@ const App = ()  =>  {
             <Route exact path = '/home' render = { () => <Home/> } />
             <Route exact path = '/profile' render = { () => <Profile /> } />
             <Route exact path = '/surfspot' render = { () => <Surfspot isUserAdmin={isUserAdmin}/> } />
+            <Route exact path = '/surfspot/:id' render = { (props) => <SpotProfile {...props} userId={uid}/> } />
             <Route exact path = '/signup' render = { () => <Signup addUser={addUser}/> } />
             <Route exact path = '/signin' render = { () => <Signin signIn={signIn}/> } />
         </Switch>
