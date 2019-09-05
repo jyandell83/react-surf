@@ -41,7 +41,7 @@ const App = ()  =>  {
         app.auth().signOut()
         .then(setNameOfCurrentUser(''))
         .then(setIsUserAdmin(false))
-    };
+    }
     const signIn = (user) =>  {
         app.auth().signInWithEmailAndPassword(user.email, user.password)
             .then(authUser =>  {
