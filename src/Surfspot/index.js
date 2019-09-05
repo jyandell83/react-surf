@@ -12,9 +12,11 @@ const Surfspot = ({isUserAdmin})  =>  {
                 const spotArray = [];
                 snapshot.forEach(childSnapshot => {
                 spotArray.push(childSnapshot.val())
-                setAllSpots(spotArray)
+                
             })
+            setAllSpots(spotArray)
         })
+        
     }
     useEffect(() =>  {
         getAllSpots();
