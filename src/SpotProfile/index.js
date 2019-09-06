@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useCallback, Component} from 'react';
+import React, { useState, useEffect, useCallback} from 'react';
 import firedb from '../Firebase/firebase'
 import 'firebase/auth'
 // import app from 'firebase/app';
 
 const SpotProfile = (props) =>  {
     const [spot, setSpot] = useState('');
-    const [allReports, setAllReports] = useState('');
+    const [allReports, setAllReports] = useState([]);
     const getSpotInfo = useCallback(() =>  {
         firedb.ref('spots')
             .on('value', (snapshot) => {
@@ -21,17 +21,13 @@ const SpotProfile = (props) =>  {
         })
         getReports();
     },[props.match.params.id])
+
     const getReports = () =>  {
         firedb.ref('reports')
-            .on('value', (snapshot) => {
-                const reportArray = [];
-                snapshot.forEach(childSnapshot => {
-                reportArray.push({
-                    ...childSnapshot.val()
-                })
-            })
-            setAllReports(reportArray)
+            .on('value', async (snapshot) => {
+                setAllReports(snapshot.val())
     })}
+
     const addReport = (report) =>  {
         firedb.ref(`reports/`).push(report)
         .catch(function(error) {
@@ -42,6 +38,7 @@ const SpotProfile = (props) =>  {
     useEffect(() =>  
         getSpotInfo()
     ,[getSpotInfo]);
+
     return(
         <div>
             <h1>{spot.spotname}</h1>
@@ -52,11 +49,14 @@ const SpotProfile = (props) =>  {
     )
 }
 
-const ReportList = () =>  {
-    console.log('this is rendering this a million times')
+const ReportList = ({ allReports }) =>  {
     return(
         <div>
-            this isnt working
+            {
+                Object.entries(allReports).map(e =>  
+                    <div>{e[1].content}</div>
+                )
+            }
         </div>
     )
 }
