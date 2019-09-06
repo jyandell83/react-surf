@@ -29,7 +29,8 @@ export const Link = styled(NavLink)`
   }
   &.active{
     background-color: Gray;
-    border-bottom: 3px solid GhostWhite;
+    border-bottom: 3px solid Gold;
     text-transform: uppercase;
+    color: GhostWhite;
   }
 `

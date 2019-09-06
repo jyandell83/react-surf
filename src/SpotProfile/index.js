@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback} from 'react';
+import MapContainer from '../SurfMap';
 import firedb from '../Firebase/firebase'
 import 'firebase/auth'
 // import app from 'firebase/app';
@@ -7,21 +8,6 @@ const SpotProfile = (props) =>  {
     const [spot, setSpot] = useState('');
     const [allReports, setAllReports] = useState([]);
     const [ loading, setLoading ] = useState(true)
-    // const getSpotInfo = useCallback(() =>  {
-    //     // firedb.ref('spots')
-    //     //     .on('value', (snapshot) => {
-    //     //         const spotArray = [];
-    //     //         snapshot.forEach(childSnapshot => {
-    //     //         spotArray.push({
-    //     //             id: childSnapshot.key,
-    //     //             ...childSnapshot.val()
-    //     //         })
-    //     //         const filtered = spotArray.filter(spot => spot.id === props.match.params.id)
-    //     //         setSpot(filtered[0])
-    //     //     })
-    //     // })
-    //     // getReports();
-    // },[props.match.params.id])
     const getSpotInfo = useCallback(() =>  {
         firedb.collection('spots').doc(props.match.params.id)
             .get()
@@ -40,12 +26,6 @@ const SpotProfile = (props) =>  {
             })
     }
     
-
-    // const getReports = () =>  {
-    //     firedb.ref('reports')
-    //         .on('value', async (snapshot) => {
-    //             setAllReports(snapshot.val())
-    // })}
 
     
 
@@ -70,6 +50,7 @@ const SpotProfile = (props) =>  {
                     <div>
                         <h1>{spot.spotname}</h1>
                         <h2>{spot.city}</h2>
+                        <MapContainer lat={spot.lat} long={spot.long}/>
                         <AddReport addReport={addReport} spotId={props.match.params.id} userId={props.userId}/>
                         <ReportList allReports={allReports}/>
                     </div>
@@ -80,6 +61,7 @@ const SpotProfile = (props) =>  {
 }
 
 const ReportList = ({ allReports }) =>  {
+    console.log(allReports, 'all reports')
     return(
         <div>
             {
@@ -113,7 +95,7 @@ const AddReport = ({addReport, spotId, userId}) =>  {
                 type="date" 
                 value={report.date}
                 name="date"
-                onChange={e => setReport({...report,[e.target.name]: e.target.value})}/><br />
+                onChange={e => setReport({...report,[e.target.name]: e.target.value})}/>
             <input 
                 placeholder="Time..."
                 type="time" value={report.time} 
