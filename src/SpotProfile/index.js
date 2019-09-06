@@ -33,9 +33,11 @@ const SpotProfile = (props) =>  {
     const addReport = (report) =>  {
         firedb.collection('reports').doc()
             .set(report)
+            .then(getReports())
         .catch(function(error) {
             console.log(error)
         })
+        
     }
     
     useEffect(() => 
@@ -51,9 +53,10 @@ const SpotProfile = (props) =>  {
                     <div>
                         <h1>{spot.spotname}</h1>
                         <h2>{spot.city}</h2>
-                        <MapContainer lat={spot.lat} long={spot.long}/>
+                        
                         <AddReport addReport={addReport} spotId={props.match.params.id} userId={props.userId}/>
                         <ReportList allReports={allReports}/>
+                        <MapContainer lat={spot.lat} long={spot.long}/>
                     </div>
             }
 
@@ -96,7 +99,7 @@ const AddReport = ({addReport, spotId, userId}) =>  {
                 type="date" 
                 value={report.date}
                 name="date"
-                onChange={e => setReport({...report,[e.target.name]: e.target.value})}/>
+                onChange={e => setReport({...report,[e.target.name]: e.target.value})}/><br />
             <Inpt 
                 placeholder="Time..."
                 type="time" value={report.time} 
