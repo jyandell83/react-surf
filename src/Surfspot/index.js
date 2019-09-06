@@ -4,6 +4,7 @@ import firedb from '../Firebase/firebase';
 import 'firebase/auth';
 
 import SpotList from '../SpotList';
+import { Btn, Inpt } from '../globalStyle';
 
 
 
@@ -31,7 +32,6 @@ const Surfspot = ({isUserAdmin})  =>  {
         })
         
     }
-    console.log(allSpots, 'this should be all spots');
     return (
       <div>
         <span>Surfspots</span>
@@ -54,15 +54,14 @@ const AddSpotForm = ({addSpot}) =>  {
     return(
         <form onSubmit={e =>  {
             e.preventDefault();
-            console.log(spot, 'in onSubmit');
             addSpot(spot);
         }}>
-            <input name="spotname" placeholder="Spotname..." onChange={e => setSpot({...spot,[e.target.name]: e.target.value})}></input> <br />
-            <input name="city" placeholder="city"  onChange={e => setSpot({...spot,[e.target.name]: e.target.value})}></input> <br />
-            <input name="state" placeholder="state"  onChange={e => setSpot({...spot,[e.target.name]: e.target.value})}></input> <br />
-            <input name="lat" placeholder="Lat..."  onChange={e => setSpot({...spot,[e.target.name]: e.target.value})} ></input> <br />
-            <input name="long" placeholder="Long..." onChange={e => setSpot({...spot,[e.target.name]: e.target.value})} ></input> <br />
-            <button type="submit">Add Spot</button>
+            <Inpt name="spotname" placeholder="Spotname..." onChange={e => setSpot({...spot,[e.target.name]: e.target.value})}></Inpt> <br />
+            <Inpt name="city" placeholder="city"  onChange={e => setSpot({...spot,[e.target.name]: e.target.value})}></Inpt> <br />
+            <Inpt name="state" placeholder="state"  onChange={e => setSpot({...spot,[e.target.name]: e.target.value})}></Inpt> <br />
+            <Inpt name="lat" placeholder="Lat..."  onChange={e => setSpot({...spot,[e.target.name]: e.target.value})} ></Inpt> <br />
+            <Inpt name="long" placeholder="Long..." onChange={e => setSpot({...spot,[e.target.name]: e.target.value})} ></Inpt> <br />
+            <Btn type="submit">Add Spot</Btn>
         </form>
     )
 

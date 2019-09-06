@@ -6,7 +6,7 @@ const SpotList = ({allSpots}) =>  {
     console.log(allSpots, 'this is the props in spotlist')
     return(
         <div>
-        <h1>hi im a list of surfspots</h1>
+        <h1>Surfspots</h1>
         <ul>
         {
             allSpots.map(spot =>  {

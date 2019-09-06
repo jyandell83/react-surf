@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Btn, Inpt } from '../globalStyle'
 
 
 
@@ -20,19 +21,19 @@ const SignInForm = ({signIn}) =>  {
             e.preventDefault();
             signIn({email, password});
         }}>
-            <input 
+            <Inpt 
                 name="email" 
                 placeholder="Name"
                 onChange={e => setEmail(e.target.value)}
-            ></input>
-            <input 
+            ></Inpt>
+            <Inpt 
                 name="password" 
                 placeholder="Password"
                 onChange={e => setPassword(e.target.value)}
-            ></input>
-            <button type="submit">
+            ></Inpt>
+            <Btn type="submit">
                 Sign In
-            </button>
+            </Btn>
         </form>
     )
 }
