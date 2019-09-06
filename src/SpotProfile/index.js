@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback} from 'react';
 import MapContainer from '../SurfMap';
 import firedb from '../Firebase/firebase'
 import 'firebase/auth'
+import { Btn, Inpt } from '../globalStyle'
 // import app from 'firebase/app';
 
 const SpotProfile = (props) =>  {
@@ -90,13 +91,13 @@ const AddReport = ({addReport, spotId, userId}) =>  {
             e.preventDefault();
             addReport(Object.assign(report, {spotId, userId}));
         }}>
-            <input 
+            <Inpt 
                 placeholder="Date..." 
                 type="date" 
                 value={report.date}
                 name="date"
                 onChange={e => setReport({...report,[e.target.name]: e.target.value})}/>
-            <input 
+            <Inpt 
                 placeholder="Time..."
                 type="time" value={report.time} 
                 name="time"
@@ -106,7 +107,7 @@ const AddReport = ({addReport, spotId, userId}) =>  {
                 value={report.content}
                 name="content"
                 onChange={e => setReport({...report,[e.target.name]: e.target.value})}></textarea><br />
-            <button type="submit">Add Report</button><br />
+            <Btn type="submit">Add Report</Btn><br />
         </form>
     )
 }
