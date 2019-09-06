@@ -7,6 +7,7 @@ import app from 'firebase/app';
 
 // -------------------------------------import individual components ------------------------------------------
 import Nav from '../Nav';
+import NavNoUser from '../NavNoUser'
 import Home from '../Home';
 import Profile from '../Profile';
 import Surfspot from '../Surfspot';
@@ -80,8 +81,7 @@ const App = ()  =>  {
     return (
       <div className="App">
         <Header />
-        <Nav signOut={signOut}/>
-        <h1>Aloha{nameOfCurrentUser ?` ${nameOfCurrentUser}`: null}, how are you?</h1>
+        {nameOfCurrentUser ? <Nav signOut={signOut} user={nameOfCurrentUser}/> : <NavNoUser />}
         <Switch>
             <Route exact path = '/home' render = { () => <Home/> } />
             <Route exact path = '/profile' render = { () => <Profile /> } />

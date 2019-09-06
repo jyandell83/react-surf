@@ -8,10 +8,8 @@ import { NavContainer,
     NavUl
     } from './style';
 
-import { Btn } from '../globalStyle'
 
-
-const Nav = ({signOut, user}) =>  {
+const Nav = () =>  {
     return(
         <NavContainer>
         <NavRow>
@@ -25,12 +23,13 @@ const Nav = ({signOut, user}) =>  {
                 <li>
                     <Link to = '/surfspot'>Surf Spot</Link>
                 </li>
-                    
+                <li>
+                    <Link to = '/signup'>Sign Up</Link>
+                </li>
+                <li>
+                    <Link to = '/signin'>Sign In</Link>
+                </li>
             </NavUl>
-            <span>
-                {user}
-                <Btn onClick={() => signOut()}>Sign Out</Btn>
-            </span>
         </NavRow>
     </NavContainer>
     )

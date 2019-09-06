@@ -10,8 +10,6 @@ export const NavRow = styled.nav`
     max-width: 1400px;
     width: 100%;
     margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
 `
 export const NavUl = styled.ul`
     text-transform: uppercase;
