@@ -13,17 +13,10 @@ const Surfspot = ({isUserAdmin})  =>  {
     const [allSpots, setAllSpots] = useState([]);
     
     const getAllSpots = useCallback(() =>  {
-        const spotArray = [];
-        firedb.ref('spots')
-            .on('value', (snapshot) => {
-                snapshot.forEach(childSnapshot => {
-                spotArray.push({
-                    id: childSnapshot.key,
-                    ...childSnapshot.val()
-                })
+        firedb.collection('spots').get()
+            .then(snapshot =>  {
+                setAllSpots(snapshot.docs.map(spot => Object.assign(spot.data(), {id: spot.id})))
             })
-            setAllSpots(spotArray)
-        })
     }, [])
 
     useEffect(() =>  {
@@ -31,7 +24,7 @@ const Surfspot = ({isUserAdmin})  =>  {
     },[getAllSpots]);
 
     const addSpot = (spot) =>  {
-        firedb.ref(`spots/`).push(spot)
+        firedb.collection('spots').doc().set(spot)
         .then(getAllSpots())
         .catch(function(error) {
             console.log(error)

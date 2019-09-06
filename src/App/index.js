@@ -14,6 +14,7 @@ import Signup from '../Signup';
 import Signin from '../Signin';
 import firedb from '../Firebase/firebase'
 import SpotProfile from '../SpotProfile';
+import Header from '../Header';
 
 
 
@@ -28,9 +29,14 @@ const App = ()  =>  {
         setUser({user});
         app.auth().createUserWithEmailAndPassword(user.email, user.password)
             .then(authUser => {
-                console.log(authUser.user.uid, 'this is auth user id');
+                // console.log(authUser.user.uid, 'this is auth user id');
                 setUid(authUser.user.uid);
-                firedb.ref(`users/${authUser.user.uid}`).set({email: user.email, username: user.name, admin: false})
+                // firedb.ref(`users/${authUser.user.uid}`).set({email: user.email, username: user.name, admin: false})
+                firedb.collection('users').doc(authUser.user.uid).set({
+                    email: user.email, 
+                    username: user.name, 
+                    admin: false
+                })
             })
             
             .catch(function(error) {
@@ -51,16 +57,16 @@ const App = ()  =>  {
                 console.log(error)
             })
     }
+    
     useEffect(() =>  {
         app.auth().onAuthStateChanged(currentUser => {
             if (currentUser) {
               console.log(currentUser.uid, 'uid in side of useEffect')
-              firedb.ref(`users/${currentUser.uid}`)
-                .once('value')
+              firedb.collection('users').doc(currentUser.uid).get()
                 .then((snapshot) => {
-                    console.log(snapshot.val());
-                    setNameOfCurrentUser(snapshot.val().username);
-                    setIsUserAdmin(snapshot.val().admin);
+                    console.log(snapshot.data());
+                    setNameOfCurrentUser(snapshot.data().username);
+                    setIsUserAdmin(snapshot.data().admin);
                     setUid(currentUser.uid)
                 })
                 .catch(error => console.log('Firebase Error: ', error))
@@ -73,6 +79,7 @@ const App = ()  =>  {
     console.log(uid, 'uid inside of app');
     return (
       <div className="App">
+        <Header />
         <Nav signOut={signOut}/>
         <h1>Aloha{nameOfCurrentUser ?` ${nameOfCurrentUser}`: null}, how are you?</h1>
         <Switch>

@@ -6,45 +6,75 @@ import 'firebase/auth'
 const SpotProfile = (props) =>  {
     const [spot, setSpot] = useState('');
     const [allReports, setAllReports] = useState([]);
+    const [ loading, setLoading ] = useState(true)
+    // const getSpotInfo = useCallback(() =>  {
+    //     // firedb.ref('spots')
+    //     //     .on('value', (snapshot) => {
+    //     //         const spotArray = [];
+    //     //         snapshot.forEach(childSnapshot => {
+    //     //         spotArray.push({
+    //     //             id: childSnapshot.key,
+    //     //             ...childSnapshot.val()
+    //     //         })
+    //     //         const filtered = spotArray.filter(spot => spot.id === props.match.params.id)
+    //     //         setSpot(filtered[0])
+    //     //     })
+    //     // })
+    //     // getReports();
+    // },[props.match.params.id])
     const getSpotInfo = useCallback(() =>  {
-        firedb.ref('spots')
-            .on('value', (snapshot) => {
-                const spotArray = [];
-                snapshot.forEach(childSnapshot => {
-                spotArray.push({
-                    id: childSnapshot.key,
-                    ...childSnapshot.val()
-                })
-                const filtered = spotArray.filter(spot => spot.id === props.match.params.id)
-                setSpot(filtered[0])
+        firedb.collection('spots').doc(props.match.params.id)
+            .get()
+            .then(snapshot => {
+                setSpot(snapshot.data())
+                getReports()
             })
-        })
-        getReports();
-    },[props.match.params.id])
+    },[props.match.params.id, setSpot])
 
     const getReports = () =>  {
-        firedb.ref('reports')
-            .on('value', async (snapshot) => {
-                setAllReports(snapshot.val())
-    })}
+        firedb.collection('reports').where('spotId', '==', props.match.params.id)
+            .get()
+            .then(snapshot => {
+                setAllReports(snapshot.docs.map(report => report.data()))
+                setLoading(false)
+            })
+    }
+    
+
+    // const getReports = () =>  {
+    //     firedb.ref('reports')
+    //         .on('value', async (snapshot) => {
+    //             setAllReports(snapshot.val())
+    // })}
+
+    
 
     const addReport = (report) =>  {
-        firedb.ref(`reports/`).push(report)
+        firedb.collection('reports').doc()
+            .set(report)
         .catch(function(error) {
             console.log(error)
         })
     }
     
-    useEffect(() =>  
+    useEffect(() => 
         getSpotInfo()
     ,[getSpotInfo]);
 
     return(
         <div>
-            <h1>{spot.spotname}</h1>
-            <h2>{spot.city}</h2>
-            <AddReport addReport={addReport} spotId={spot.id} userId={props.userId}/>
-            <ReportList allReports={allReports}/>
+            {
+                loading
+                    ? <div>loading</div>
+                    :  
+                    <div>
+                        <h1>{spot.spotname}</h1>
+                        <h2>{spot.city}</h2>
+                        <AddReport addReport={addReport} spotId={props.match.params.id} userId={props.userId}/>
+                        <ReportList allReports={allReports}/>
+                    </div>
+            }
+
         </div>
     )
 }
@@ -76,7 +106,7 @@ const AddReport = ({addReport, spotId, userId}) =>  {
     return(
         <form onSubmit={e =>  {
             e.preventDefault();
-            addReport(Object.assign(report, {spot: spotId}, {user: userId}));
+            addReport(Object.assign(report, {spotId, userId}));
         }}>
             <input 
                 placeholder="Date..." 
