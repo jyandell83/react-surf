@@ -14,6 +14,7 @@ export const HeroImage = styled.div`
 `
 
 export const Logo = styled.h1`
+    font-family: 'Armata', sans-serif;
     margin: 0;
     font-size: 50px;
     color: AliceBlue;
