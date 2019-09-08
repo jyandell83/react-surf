@@ -18,9 +18,6 @@ const Nav = () =>  {
                     <Link to = '/home'>Home</Link>
                 </li>
                 <li>
-                    <Link to = '/profile'>Profile</Link>
-                </li>
-                <li>
                     <Link to = '/surfspot'>Surf Spot</Link>
                 </li>
                 <li>

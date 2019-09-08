@@ -3,6 +3,8 @@ import MapContainer from '../SurfMap';
 import firedb from '../Firebase/firebase'
 import 'firebase/auth'
 import { Btn, Inpt } from '../globalStyle'
+import { SpotContainer, ReportUl } from './style'
+
 // import app from 'firebase/app';
 
 const SpotProfile = (props) =>  {
@@ -22,7 +24,7 @@ const SpotProfile = (props) =>  {
         firedb.collection('reports').where('spotId', '==', props.match.params.id)
             .get()
             .then(snapshot => {
-                setAllReports(snapshot.docs.map(report => report.data()))
+                setAllReports(snapshot.docs.map(report => Object.assign(report.data(),{reportId: report.id})))
                 setLoading(false)
             })
     }
@@ -39,38 +41,64 @@ const SpotProfile = (props) =>  {
         })
         
     }
+
+    const removeReport = (reportId) =>  {
+        console.log(reportId);
+        firedb.collection("reports").doc(reportId).delete().then(function() {
+            console.log("Document successfully deleted!");
+        })
+        .then(getReports())
+        .catch(function(error) {
+            console.error("Error removing document: ", error);
+        });
+    }
     
     useEffect(() => 
         getSpotInfo()
     ,[getSpotInfo]);
 
     return(
-        <div>
+        <SpotContainer>
+            <div>
+                <h1>{spot.spotname}</h1>
+                <h2>{spot.city}</h2>
+                <AddReport addReport={addReport} spotId={props.match.params.id} userId={props.userId}/>
+            </div>
+            <ReportList allReports={allReports} removeReport={removeReport}/>
             {
                 loading
                     ? <div>loading</div>
                     :  
                     <div>
-                        <h1>{spot.spotname}</h1>
-                        <h2>{spot.city}</h2>
-                        
-                        <AddReport addReport={addReport} spotId={props.match.params.id} userId={props.userId}/>
-                        <ReportList allReports={allReports}/>
                         <MapContainer lat={spot.lat} long={spot.long}/>
                     </div>
             }
 
-        </div>
+        </SpotContainer>
     )
 }
 
-const ReportList = ({ allReports }) =>  {
-    console.log(allReports, 'all reports')
+const ReportList = ({ allReports, removeReport }) =>  {
+    console.log(allReports)
     return(
         <div>
             {
-                Object.entries(allReports).map(e =>  
-                    <div>{e[1].content}</div>
+                allReports.map((e,i) => 
+                        <ReportUl key={i}>
+                            <li>
+                                {e.date}
+                            </li>
+                            <li>
+                                {e.time}
+                            </li>
+                            <li>
+                                {e.content}
+                            </li>
+                            <Btn onClick={() => removeReport(e.reportId)}>
+                                X
+                            </Btn>
+                        </ReportUl>
+                    
                 )
             }
         </div>

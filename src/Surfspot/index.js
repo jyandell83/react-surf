@@ -34,9 +34,9 @@ const Surfspot = ({isUserAdmin})  =>  {
     }
     return (
       <div>
-        <span>Surfspots</span>
-        {isUserAdmin ? <AddSpotForm addSpot={addSpot}/>: null}
+        
         <SpotList allSpots={allSpots}/>
+        {isUserAdmin ? <AddSpotForm addSpot={addSpot}/>: null}
       </div>
     );
 }
