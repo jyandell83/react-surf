@@ -8,7 +8,7 @@ class WeatherWidget extends Component {
     }
 
     getWeather = async () =>  {
-        const weather = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${this.props.lat}&lon=${this.props.long}&APPID=${process.env.REACT_APP_WEATHER_KEY}`);
+        const weather = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${this.props.lat}&lon=${this.props.long}&units=imperial&APPID=${process.env.REACT_APP_WEATHER_KEY}`);
         const parsedWeather = await weather.json();
         return parsedWeather;
     }
@@ -25,7 +25,8 @@ class WeatherWidget extends Component {
     render(){
         return(
             <div>
-                <span>{this.state.temp}</span>
+                <h3>Current Weather</h3>
+                <span>{this.state.temp} degrees and </span>
                 <span>{this.state.desc}</span>
             </div>
         )
