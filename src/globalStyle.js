@@ -24,3 +24,12 @@ export const Inpt = styled.input`
     border-radius: 4px;
     box-sizing: border-box;
 `
+
+export const ReportUl = styled.ul`
+    list-style-type: none;
+    margin: 5px;
+    padding: 0;
+    background-color: lightgray;
+    border: 1px solid darkgray;
+    border-radius: 3px;
+`

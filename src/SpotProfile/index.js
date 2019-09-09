@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback} from 'react';
 import MapContainer from '../SurfMap';
+import WeatherWidget from '../WeatherWidget';
 import firedb from '../Firebase/firebase'
 import 'firebase/auth'
 import { Btn, Inpt } from '../globalStyle'
@@ -29,6 +30,7 @@ const SpotProfile = (props) =>  {
             })
     }
     
+    
 
     
 
@@ -56,12 +58,13 @@ const SpotProfile = (props) =>  {
     useEffect(() => 
         getSpotInfo()
     ,[getSpotInfo]);
-
+    
     return(
         <SpotContainer>
             <div>
                 <h1>{spot.spotname}</h1>
                 <h2>{spot.city}</h2>
+                
                 <AddReport addReport={addReport} spotId={props.match.params.id} userId={props.userId}/>
             </div>
             <ReportList allReports={allReports} removeReport={removeReport}/>
@@ -70,6 +73,7 @@ const SpotProfile = (props) =>  {
                     ? <div>loading</div>
                     :  
                     <div>
+                        <WeatherWidget lat={spot.lat} long={spot.long}/>
                         <MapContainer lat={spot.lat} long={spot.long}/>
                     </div>
             }

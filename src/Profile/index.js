@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import firedb from '../Firebase/firebase'
+import { ReportUl } from '../globalStyle'
 
 
 
@@ -19,7 +20,7 @@ const Profile = ({userId})  =>  {
     }, [getReports]);
     return (
       <div>
-        <span>Profile</span>
+        <h1>All Your Reports</h1>
         {isLoading ? <div>loading</div> :
         <ReportList allReports={allReports}/>
         }
@@ -34,7 +35,7 @@ const ReportList = ({allReports}) =>  {
         <div>
             {
                 allReports.map((e,i) => 
-                        <ul key={i}>
+                        <ReportUl key={i}>
                             <li>
                                 {e.date}
                             </li>
@@ -44,7 +45,7 @@ const ReportList = ({allReports}) =>  {
                             <li>
                                 {e.content}
                             </li>
-                        </ul>
+                        </ReportUl>
                     
                 )
             }
