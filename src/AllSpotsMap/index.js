@@ -29,7 +29,7 @@ const MapAllSpots = ({allSpots, google}) =>  {
             {allSpots.map((spot) =>  {
                     return (
                         <Marker 
-                        key={spot.spotId}
+                        key={spot.id}
                         position={{lat: spot.lat, lng: spot.long}}
                        
                         />

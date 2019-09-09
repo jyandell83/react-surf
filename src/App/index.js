@@ -85,7 +85,7 @@ const App = ()  =>  {
         {nameOfCurrentUser ? <Nav signOut={signOut} user={nameOfCurrentUser}/> : <NavNoUser />}
         <Switch>
             <Route exact path = '/home' render = { () => <Home/> } />
-            <Route exact path = '/profile' render = { () => <Profile /> } />
+            <Route exact path = '/profile' render = { () => <Profile userId={uid}/> } />
             <Route exact path = '/surfspot' render = { () => <Surfspot isUserAdmin={isUserAdmin}/> } />
             <Route exact path = '/surfspot/:id' render = { (props) => <SpotProfile {...props} userId={uid}/> } />
             <Route exact path = '/signup' render = { () => <Signup addUser={addUser}/> } />

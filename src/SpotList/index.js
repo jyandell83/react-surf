@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Ul } from './style';
 
 
 const SpotList = ({allSpots}) =>  {
@@ -7,7 +8,7 @@ const SpotList = ({allSpots}) =>  {
     return(
         <div>
         <h1>Surfspots</h1>
-        <ul>
+        <Ul>
         {
             allSpots.map(spot =>  {
                 
@@ -20,7 +21,7 @@ const SpotList = ({allSpots}) =>  {
                 )
             })
         }
-        </ul>
+        </Ul>
         </div>
         
     )

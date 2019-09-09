@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import firedb from '../Firebase/firebase'
 import MapAllSpots from '../AllSpotsMap'
+import SpotList from '../SpotList';
+import { Container } from './style'
 
 
 
@@ -18,7 +20,7 @@ const Home = ()  =>  {
         firedb.collection('spots')
             .get()
             .then(snapshot => {
-                setAllSpots(snapshot.docs.map(spot => Object.assign(spot.data(),{spotId: spot.id})))
+                setAllSpots(snapshot.docs.map(spot => Object.assign(spot.data(),{id: spot.id})))
             })
     },[])
     useEffect(() => 
@@ -26,10 +28,10 @@ const Home = ()  =>  {
     ,[getAllSpots]);
     
     return (
-      <div>
-        <span>Home</span>
+      <Container>
         <MapAllSpots allSpots={allSpots}/>
-      </div>
+        <SpotList allSpots={allSpots}/>
+      </Container>
     );
   }
 
