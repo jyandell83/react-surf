@@ -9,7 +9,6 @@ const style = {
 export class MapContainer extends Component {
     
   render() {
-      console.log(this.props.lat, this.props.long, 'lat and long in map')
     return (
       <Map 
       google={this.props.google} 
