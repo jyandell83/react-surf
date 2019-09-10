@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import 'firebase/auth'
 import app from 'firebase/app';
+import { withRouter } from "react-router";
 
 
 
@@ -21,7 +22,7 @@ import Frontwards from '../Four04';
 
 
 
-const App = ()  =>  {
+const App = (props)  =>  {
     const [user, setUser] = useState('');
     const [uid, setUid] = useState('');
     const [nameOfCurrentUser, setNameOfCurrentUser] = useState('');
@@ -49,12 +50,14 @@ const App = ()  =>  {
         app.auth().signOut()
         .then(setNameOfCurrentUser(''))
         .then(setIsUserAdmin(false))
+        .then(props.history.push('/home'))
     }
     const signIn = (user) =>  {
         app.auth().signInWithEmailAndPassword(user.email, user.password)
             .then(authUser =>  {
                 console.log(authUser);
             })
+            .then(props.history.push('/home'))
             .catch(function(error) {
                 console.log(error)
             })
@@ -77,8 +80,6 @@ const App = ()  =>  {
             }
           });
     }, []);
-    console.log(user, 'user inside of app');
-    console.log(uid, 'uid inside of app');
     return (
       <div className="App">
         <Header />
@@ -96,4 +97,4 @@ const App = ()  =>  {
     );
   }
 
-  export default App;
+  export default withRouter(App);

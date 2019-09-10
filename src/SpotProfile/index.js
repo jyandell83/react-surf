@@ -45,7 +45,6 @@ const SpotProfile = (props) =>  {
     }
 
     const removeReport = (reportId) =>  {
-        console.log(reportId);
         firedb.collection("reports").doc(reportId).delete().then(function() {
             console.log("Document successfully deleted!");
         })

@@ -12,7 +12,7 @@ const Signin = ({signIn})  =>  {
     );
   }
 
-const SignInForm = ({signIn}) =>  {
+const SignInForm = ({ signIn }) =>  {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
    
