@@ -4,7 +4,6 @@ import { Ul } from './style';
 
 
 const SpotList = ({allSpots}) =>  {
-    console.log(allSpots, 'this is the props in spotlist')
     return(
         <div>
         <h1>Surfspots</h1>

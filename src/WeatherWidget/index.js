@@ -15,7 +15,6 @@ class WeatherWidget extends Component {
 
     async componentDidMount(){
         const allWeather = await this.getWeather();
-        console.log(allWeather)
         this.setState({
           temp: allWeather.main.temp,
           desc: allWeather.weather[0].main

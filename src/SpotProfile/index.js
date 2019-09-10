@@ -5,6 +5,7 @@ import firedb from '../Firebase/firebase'
 import 'firebase/auth'
 import { Btn, Inpt } from '../globalStyle'
 import { SpotContainer, ReportUl } from './style'
+import { ClipLoader } from 'react-spinners';
 
 // import app from 'firebase/app';
 
@@ -69,7 +70,7 @@ const SpotProfile = (props) =>  {
             <ReportList allReports={allReports} removeReport={removeReport}/>
             {
                 loading
-                    ? <div>loading</div>
+                    ? <ClipLoader color={'steelblue'}/>
                     :  
                     <div>
                         <WeatherWidget lat={spot.lat} long={spot.long}/>
@@ -82,7 +83,6 @@ const SpotProfile = (props) =>  {
 }
 
 const ReportList = ({ allReports, removeReport }) =>  {
-    console.log(allReports)
     return(
         <div>
             {

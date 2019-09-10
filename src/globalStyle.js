@@ -9,6 +9,7 @@ export const Btn = styled.button`
     text-align: center;
     padding: 5px;
     border-radius: 3px;
+    margin: 5px;
     &:hover {
         color: white;
         background: dodgerblue;

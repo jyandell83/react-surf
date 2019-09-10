@@ -15,7 +15,7 @@ const style = {
 
 
 const MapAllSpots = ({allSpots, google}) =>  {
-    console.log(allSpots, 'should be all spots')
+
     return (
         <Map 
         google={google} 

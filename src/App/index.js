@@ -32,7 +32,6 @@ const App = (props)  =>  {
         setUser({user});
         app.auth().createUserWithEmailAndPassword(user.email, user.password)
             .then(authUser => {
-                // console.log(authUser.user.uid, 'this is auth user id');
                 setUid(authUser.user.uid);
                 // firedb.ref(`users/${authUser.user.uid}`).set({email: user.email, username: user.name, admin: false})
                 firedb.collection('users').doc(authUser.user.uid).set({
@@ -41,7 +40,7 @@ const App = (props)  =>  {
                     admin: false
                 })
             })
-            
+            .then(props.history.push('/home'))
             .catch(function(error) {
             console.log(error)
           });
@@ -62,14 +61,32 @@ const App = (props)  =>  {
                 console.log(error)
             })
     }
+    const updatePassword = (pw) =>  {
+        console.log('changing pw', pw)
+        app.auth().currentUser.updatePassword(pw)
+        .then(props.history.push('/profile'))
+        .catch(function(error) {
+            console.log(error)
+        })
+    }
+    const removeUser = () =>  {
+        app.auth().currentUser.delete()
+            
+            .then((() => {
+                firedb.collection('users').doc(uid).delete()
+            }))
+            .then(props.history.push('/home'))
+            .then(setNameOfCurrentUser(''))
+            .catch(function(error) {
+            console.log(error)
+        })
+    }
     
     useEffect(() =>  {
         app.auth().onAuthStateChanged(currentUser => {
             if (currentUser) {
-              console.log(currentUser.uid, 'uid in side of useEffect')
               firedb.collection('users').doc(currentUser.uid).get()
                 .then((snapshot) => {
-                    console.log(snapshot.data());
                     setNameOfCurrentUser(snapshot.data().username);
                     setIsUserAdmin(snapshot.data().admin);
                     setUid(currentUser.uid)
@@ -86,7 +103,7 @@ const App = (props)  =>  {
         {nameOfCurrentUser ? <Nav signOut={signOut} user={nameOfCurrentUser}/> : <NavNoUser />}
         <Switch>
             <Route exact path = '/home' render = { () => <Home/> } />
-            <Route exact path = '/profile' render = { () => <Profile userId={uid}/> } />
+            <Route exact path = '/profile' render = { () => <Profile userId={uid} updatePassword={updatePassword} removeUser={removeUser}/> } />
             <Route exact path = '/surfspot' render = { () => <Surfspot isUserAdmin={isUserAdmin}/> } />
             <Route exact path = '/surfspot/:id' render = { (props) => <SpotProfile {...props} userId={uid}/> } />
             <Route exact path = '/signup' render = { () => <Signup addUser={addUser}/> } />
