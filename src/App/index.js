@@ -18,6 +18,7 @@ import firedb from '../Firebase/firebase'
 import SpotProfile from '../SpotProfile';
 import Header from '../Header';
 import Frontwards from '../Four04';
+import Welcome from '../Welcome';
 
 
 
@@ -108,6 +109,7 @@ const App = (props)  =>  {
             <Route exact path = '/surfspot/:id' render = { (props) => <SpotProfile {...props} userId={uid}/> } />
             <Route exact path = '/signup' render = { () => <Signup addUser={addUser}/> } />
             <Route exact path = '/signin' render = { () => <Signin signIn={signIn}/> } />
+            <Route exact path = '/' render = { () => <Welcome /> } />
             <Route component={Frontwards} />
         </Switch>
       </div>

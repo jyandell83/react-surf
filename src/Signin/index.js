@@ -23,12 +23,12 @@ const SignInForm = ({ signIn }) =>  {
         }}>
             <Inpt 
                 name="email" 
-                placeholder="Name"
+                placeholder="Email..."
                 onChange={e => setEmail(e.target.value)}
             ></Inpt>
             <Inpt 
                 name="password" 
-                placeholder="Password"
+                placeholder="Password..."
                 onChange={e => setPassword(e.target.value)}
             ></Inpt>
             <Btn type="submit">
