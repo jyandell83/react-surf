@@ -16,6 +16,7 @@
 
 #### Things to work on
 - build out the spot profile page with buoy data
+- show error message when user doesn't use a proper password
 - style some of the forms
 - possibly link to another API for data about local shops or restaurants, gas stations etc.
 
