@@ -12,6 +12,7 @@
 - CSS3
 - React
 - Firebase
+- Styled Components
 
 
 #### Things to work on
