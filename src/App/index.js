@@ -102,16 +102,18 @@ const App = (props)  =>  {
       <div className="App">
         <Header />
         {nameOfCurrentUser ? <Nav signOut={signOut} user={nameOfCurrentUser}/> : <NavNoUser />}
-        <Switch>
-            <Route exact path = '/home' render = { () => <Home/> } />
-            <Route exact path = '/profile' render = { () => <Profile userId={uid} updatePassword={updatePassword} removeUser={removeUser}/> } />
-            <Route exact path = '/surfspot' render = { () => <Surfspot isUserAdmin={isUserAdmin}/> } />
-            <Route exact path = '/surfspot/:id' render = { (props) => <SpotProfile {...props} userId={uid}/> } />
-            <Route exact path = '/signup' render = { () => <Signup addUser={addUser}/> } />
-            <Route exact path = '/signin' render = { () => <Signin signIn={signIn}/> } />
-            <Route exact path = '/' render = { () => <Welcome /> } />
-            <Route component={Frontwards} />
-        </Switch>
+        <div className="content">
+            <Switch>
+                <Route exact path = '/home' render = { () => <Home/> } />
+                <Route exact path = '/profile' render = { () => <Profile userId={uid} updatePassword={updatePassword} removeUser={removeUser}/> } />
+                <Route exact path = '/surfspot' render = { () => <Surfspot isUserAdmin={isUserAdmin}/> } />
+                <Route exact path = '/surfspot/:id' render = { (props) => <SpotProfile {...props} userId={uid}/> } />
+                <Route exact path = '/signup' render = { () => <Signup addUser={addUser}/> } />
+                <Route exact path = '/signin' render = { () => <Signin signIn={signIn}/> } />
+                <Route exact path = '/' render = { () => <Welcome /> } />
+                <Route component={Frontwards} />
+            </Switch>
+        </div>
       </div>
     );
   }
