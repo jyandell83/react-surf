@@ -15,6 +15,7 @@
 
 
 #### Things to work on
+- The biggest thing that I need to work on is organizing the CSS and redoing the style. I have learned so much about web design since I made this page.
 - build out the spot profile page with buoy data
 - show error message when user doesn't use a proper password
 - style some of the forms
