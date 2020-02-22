@@ -13,7 +13,7 @@ const SpotList = ({allSpots}) =>  {
                 
                 return(
                 <li key={spot.id}>
-                    <Link to={`/surfspot/${spot.id}`}>
+                    <Link to={`/surfspot/${spot.id}`} className="spotlink">
                         {spot.spotname}
                     </Link>
                 </li>

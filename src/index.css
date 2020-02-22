@@ -8,4 +8,11 @@ body {
     padding-top: 30px;
 }
 
+.spotlink {
+    text-decoration: none;
+    color: gray;
+}
 
+.spotlink:hover {
+    border-bottom: 1px solid gold;
+}
