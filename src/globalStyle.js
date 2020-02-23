@@ -7,9 +7,9 @@ export const Btn = styled.button`
     border-color: dodgerblue;
     background: white;
     text-align: center;
-    padding: 5px;
+    padding: .5rem;
     border-radius: 3px;
-    margin: 5px;
+    margin: .5rem;
     &:hover {
         color: white;
         background: dodgerblue;
@@ -18,17 +18,17 @@ export const Btn = styled.button`
 
 export const Inpt = styled.input`
     width: 40%;
-    padding: 10px 15px;
-    margin: 8px 0;
+    padding: 1rem 1.5rem;
+    margin: .8rem 0;
     display: inline-block;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: .4rem;
     box-sizing: border-box;
 `
 
 export const ReportUl = styled.ul`
     list-style-type: none;
-    margin: 5px;
+    margin: .5rem;
     padding: 0;
     background-color: lightgray;
     border: 1px solid darkgray;

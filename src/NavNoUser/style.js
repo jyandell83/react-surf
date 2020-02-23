@@ -7,7 +7,7 @@ export const NavContainer = styled.div`
 `
 
 export const NavRow = styled.nav`
-    max-width: 1400px;
+    max-width: 140rem;
     width: 100%;
     margin: 0 auto;
 `
@@ -22,7 +22,7 @@ export const NavUl = styled.ul`
 export const Link = styled(NavLink)`
   display:inline-block;
   text-decoration: none;
-  padding: 15px 15px 15px 15px;
+  padding: 1.5rem 1.5rem 1.5rem 1.5rem;
   color: black;
   &:hover {
     color: Gold;

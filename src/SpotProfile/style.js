@@ -7,7 +7,7 @@ export const SpotContainer = styled.div`
 
 export const ReportUl = styled.ul`
     list-style-type: none;
-    margin: 5px;
+    margin: .5rem;
     padding: 0;
     background-color: lightgray;
     border: 1px solid darkgray;
