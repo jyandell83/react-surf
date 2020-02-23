@@ -3,7 +3,6 @@ import styled from 'styled-components'
 
 export const HeroImage = styled.div`
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url("/pelicans-flying.jpg");
-    background-color: papayawhip;
     text-align: left;
     background-position: center;
     background-repeat: no-repeat;
