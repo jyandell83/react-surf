@@ -15,9 +15,14 @@ export const HeroImage = styled.div`
 
 export const Logo = styled.h1`
     font-family: 'Armata', sans-serif;
+    letter-spacing: .7px;
+    font-weight: 400;
     margin: 0;
     font-size: 50px;
-    color: AliceBlue;
+    background-image: radial-gradient(circle at center, gray, aliceblue);
+    -webkit-background-clip: text;
+    color: transparent;
+    text-transform: uppercase;
 `
 
 
