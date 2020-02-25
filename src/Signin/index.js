@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Btn, Inpt } from '../globalStyle'
+import { Btn, Inpt, InptGrp, Form } from '../globalStyle'
 
 
 
@@ -17,26 +17,22 @@ const SignInForm = ({ signIn }) =>  {
     const [password, setPassword] = useState('');
    
     return(
-        <form onSubmit={e => {
+        <Form onSubmit={e => {
             e.preventDefault();
             signIn({email, password});
         }}>
-            <Inpt 
-                name="email" 
-                placeholder="Email..."
-                onChange={e => setEmail(e.target.value)}
-            ></Inpt>
-            <br />
-            <Inpt 
-                name="password" 
-                placeholder="Password..."
-                onChange={e => setPassword(e.target.value)}
-            ></Inpt>
-            <br />
+            <InptGrp>
+                <Inpt name="email" placeholder="Email..." id="email" onChange={e => setEmail(e.target.value)}></Inpt>
+                <label for="email">Email</label>
+            </InptGrp>
+            <InptGrp>
+                <Inpt name="password" id="password" placeholder="Password..."onChange={e => setPassword(e.target.value)}></Inpt>
+                <label for="password">Password</label>
+            </InptGrp>
             <Btn type="submit">
                 Sign In
             </Btn>
-        </form>
+        </Form>
     )
 }
 
