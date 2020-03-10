@@ -19,6 +19,7 @@ import SpotProfile from '../SpotProfile';
 import Header from '../Header';
 import Frontwards from '../Four04';
 import Welcome from '../Welcome';
+import Footer from '../Footer';
 
 
 
@@ -114,6 +115,7 @@ const App = (props)  =>  {
                 <Route component={Frontwards} />
             </Switch>
         </div>
+        <Footer />
       </div>
     );
   }
