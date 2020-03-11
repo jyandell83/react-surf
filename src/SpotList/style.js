@@ -5,4 +5,8 @@ export const Ul = styled.ul`
     text-transform: uppercase;
     list-style-type: none;
     margin: 0;
+
+    li {
+        margin: 1rem;
+    }
 `

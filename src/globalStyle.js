@@ -3,16 +3,17 @@ import styled from 'styled-components'
 
 export const Btn = styled.button`
     cursor: pointer;
-    color: black;
-    border-color: dodgerblue;
-    background: white;
+    color: currentColor;
+    border-color: var(--color-accent);
+    background-color: var(--color-grey-light-1);
     text-align: center;
-    padding: .5rem;
+    padding: 1rem;
     border-radius: 3px;
     margin: .5rem;
+    text-transform: uppercase;
     &:hover {
-        color: white;
-        background: dodgerblue;
+        color: var(--color-secondary);
+        background-color: var(--color-accent);
       }
 `
 

@@ -1,8 +1,8 @@
 :root {
     --color-primary: #0984e3;
     --color-accent: #fd79a8;
-    --color-secondary: #00cec9;
-    --color-tertiary: #ffeaa7;
+    --color-secondary: #f5f6fa;
+    --color-tertiary: #7f8fa6;
 
     --color-grey-light-1: #faf9f9;
     --color-grey-light-2: #f4f2f2;
@@ -29,7 +29,7 @@
 
 html {
 	box-sizing: border-box;
-	font-size: 62.5%;
+    font-size: 62.5%;
 }
 
 body {
@@ -38,6 +38,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-size: 1.6rem;
   background-color: var(--color-grey-light-1);
+  color: var(--color-grey-dark-1);
 }
 
 .App {
@@ -52,9 +53,9 @@ body {
 
 .spotlink {
     text-decoration: none;
-    color: gray;
+    color: var(--color-grey-dark-3);
 }
 
 .spotlink:hover {
-    border-bottom: 1px solid gold;
+    border-bottom: 1px solid var(--color-accent);
 }
