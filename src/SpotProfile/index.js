@@ -74,7 +74,11 @@ const SpotProfile = (props) =>  {
                     :  
                     <div>
                         <WeatherWidget lat={spot.lat} long={spot.long}/>
-                        <MapContainer lat={spot.lat} long={spot.long}/>
+                        <div className="mapBox">
+                            <MapContainer lat={spot.lat} long={spot.long}/>
+                        </div>
+                        
+                        
                     </div>
             }
 
