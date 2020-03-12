@@ -37,11 +37,11 @@ const SignUpForm = ({addUser}) =>  {
               <label for="email">Email</label>
             </InptGrp>
             <InptGrp>
-            <Inpt id="passwordOne" name="passwordOne" placeholder="passwordOne" value={passwordOne} onChange={e => setPasswordOne(e.target.value)}></Inpt>
+            <Inpt id="passwordOne" name="passwordOne" placeholder="Password..." value={passwordOne} onChange={e => setPasswordOne(e.target.value)}></Inpt>
               <label for="passwordOne">Password</label>
             </InptGrp>
             <InptGrp>
-            <Inpt id ="passwordTwo" name= "passwordTwo" placeholder="Confirm Password" value={passwordTwo} onChange={e => setPasswordTwo(e.target.value)}></Inpt>
+            <Inpt id ="passwordTwo" name= "passwordTwo" placeholder="Confirm Password..." value={passwordTwo} onChange={e => setPasswordTwo(e.target.value)}></Inpt>
               <label for="passwordTwo">Confirm Password</label>
             </InptGrp>
             <Btn type="submit">Sign Up</Btn>
