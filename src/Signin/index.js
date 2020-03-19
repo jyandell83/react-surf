@@ -23,11 +23,11 @@ const SignInForm = ({ signIn }) =>  {
         }}>
             <InptGrp>
                 <Inpt name="email" placeholder="Email..." id="email" onChange={e => setEmail(e.target.value)}></Inpt>
-                <label for="email">Email</label>
+                <label htmlFor="email">Email</label>
             </InptGrp>
             <InptGrp>
                 <Inpt name="password" id="password" placeholder="Password..."onChange={e => setPassword(e.target.value)}></Inpt>
-                <label for="password">Password</label>
+                <label htmlFor="password">Password</label>
             </InptGrp>
             <Btn type="submit">
                 Sign In

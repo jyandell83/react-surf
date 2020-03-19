@@ -30,19 +30,19 @@ const SignUpForm = ({addUser}) =>  {
         }}>
             <InptGrp>
             <Inpt id="username" name="username" placeholder="Username..." value={userName} onChange={e => setUserName(e.target.value)}></Inpt>
-              <label for="username">Username</label>
+              <label htmlFor="username">Username</label>
             </InptGrp>
             <InptGrp>
             <Inpt id="email" name="email" placeholder="Email..." value={email} onChange={e => setEmail(e.target.value)}></Inpt>
-              <label for="email">Email</label>
+              <label htmlFor="email">Email</label>
             </InptGrp>
             <InptGrp>
             <Inpt id="passwordOne" name="passwordOne" placeholder="Password..." value={passwordOne} onChange={e => setPasswordOne(e.target.value)}></Inpt>
-              <label for="passwordOne">Password</label>
+              <label htmlFor="passwordOne">Password</label>
             </InptGrp>
             <InptGrp>
             <Inpt id ="passwordTwo" name= "passwordTwo" placeholder="Confirm Password..." value={passwordTwo} onChange={e => setPasswordTwo(e.target.value)}></Inpt>
-              <label for="passwordTwo">Confirm Password</label>
+              <label htmlFor="passwordTwo">Confirm Password</label>
             </InptGrp>
             <Btn type="submit">Sign Up</Btn>
         </Form>
