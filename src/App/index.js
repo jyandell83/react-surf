@@ -41,8 +41,8 @@ const App = (props)  =>  {
                     username: user.name, 
                     admin: false
                 })
+                props.history.push('/home');
             })
-            .then(props.history.push('/home'))
             .catch(function(error) {
             console.log(error)
           });

@@ -20,8 +20,6 @@ const SignUpForm = ({addUser}) =>  {
     const [email, setEmail] = useState('');
     const [passwordOne, setPasswordOne] = useState('');
     const [passwordTwo, setPasswordTwo] = useState('');
-
-    console.log(userName,email, passwordOne, passwordTwo)
     
     return(
         <Form onSubmit={e =>  {
